@@ -1,5 +1,9 @@
 //Backend
-
+Customer = function(name, phone, address) {
+  this.name = name,
+  this.phone = phone,
+  this.address = address
+}
 PizzaTotal = function() {
   this.pizzaPrice = [];
   this.pizzaOrder = [],
@@ -60,15 +64,11 @@ Pizza.prototype.priceCalculator = function() {
   let pizzaTotal = this.size + toppingTotal;
   return pizzaTotal
 };
-
-Pizza.prototype.pizzaCartDisplay = function() {
-  $("#pizza-cart").append("<li>$" + this.priceCalculator() + " " + this.size + " inch pizza with: cheese, " + this.toppings + "</li>");
-};
-
 //UI
 
 Pizza.prototype.pizzaCartDisplay = function() {
   $("#pizza-cart").append("<li>$" + this.priceCalculator() + "—" + this.size + " inch pizza with: cheese " + this.toppings.join(' ') + "</li>");
+  $('#cost').text("$" + pizzaTotal.orderTotal());
 };
 
 let pizzaTotal = new PizzaTotal();
@@ -86,18 +86,17 @@ $(document).ready(function() {
     let price = pizza.priceCalculator();
     let newPizza = [pizza, price];
     pizzaTotal.addPizza(newPizza, price);
-    $('#cost').text("$" + pizzaTotal.orderTotal());
     pizza.pizzaCartDisplay();
   });
   //
   $('form#submit-order').submit(function(event) {
     event.preventDefault();
-    // $(".order").show();
+
     $('#cost').text("$" + pizzaTotal.orderTotal());
     let userName = $('#name').val();
     let userAddress = $('#address').val();
     let userPhone = $('#phone').val();
     let customer = new Customer(userName, userAddress, userPhone)
-  //   $('#final-order').text("$" +
+
   });
 });
