@@ -10,6 +10,49 @@
     <title>Pizza Shop</title>
   </head>
   <body>
+<form>
+    <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" id="name" placeholder="enter name">
+  </div>
+  <div class="form-group">
+    <label>Size</label>
+    <select class="form-control" id="size">
+      <option value=10>Small $10</option>
+      <option value=13>Medium $13</option>
+      <option value=15>Large $15</option>
+    </select>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="toppings" type="checkbox" id="topping1" value="mushroom">
+    <label class="form-check-label" for="inlineCheckbox1">Mushroom</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="toppings" type="checkbox" id="topping2" value="olives">
+    <label class="form-check-label" for="inlineCheckbox2">Olives</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="toppings" type="checkbox" id="inlineCheckbox3" value="pepperoni">
+    <label class="form-check-label" for="inlineCheckbox3">pepperoni</label>
+  </div>
+
+  <!-- <div class="form-group">
+    <label>Toppings</label>
+
+    <select multiple class="form-control" id="toppings">
+      <option value="mushroom">Mushroom</option>
+      <option value="olives">Olives</option>
+      <option value="pepperoni">Pepperoni</option>
+      <option value="jalapeno">jalapeno</option>
+      <option value="sadness">Sadness</option>
+    </select>
+  </div> -->
+  <button type="submit">Submit Order</button>
+</form>
+
+<div class="order">
+  <h2 class='cost'></h2>
+</div>
 
   </body>
 </html>
