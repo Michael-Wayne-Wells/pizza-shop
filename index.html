@@ -40,9 +40,16 @@
 
   <div class="order">
     <h1>Pizza Cart:</h1>
-    <ul id="pizza-cart"></ul>
+    <ul id="order-details"></ul>
+    <div id="show-pizza">
+        <p>this pizza: <span id="pizza-details"></span></p>
+
+        <div id="buttons">
+        </div>
+      </div>
     <h1>Subtotal:</h1>
     <h2 id='cost'></h2>
+  
   </div>
   <form id="submit-order">
     <div class="form-group">
@@ -63,18 +70,13 @@
     <div class="container">
 
 
-    <div class="row">
+  <div class="row">
       <div class="col">
         <h3>Your Order:</h3>
         <ul id="order-details">
 
         </ul>
-        <div id="show-pizza">
-            <p>this pizza: <span id="pizza-details"></span></p>
 
-            <div id="buttons">
-            </div>
-          </div>
       </div>
       <div class="col">
         <h3>Delivery Details:</h3>

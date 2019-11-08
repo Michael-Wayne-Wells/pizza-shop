@@ -66,44 +66,43 @@ Pizza.prototype.priceCalculator = function() {
 };
 //UI
 
+
+
+// function displayPizzaOrder(ordersToDisplay) {
+//   var ordersList = $("ul#order-details");
+//   var htmlForOrderDetails = "";
+//   ordersToDisplay.pizzaOrder.forEach(function(pizza) {
+//     htmlForOrderDetails += "<li id=" + pizza.id + ">$" + this.price + "— Pizza" + "</li>";
+//   });
+//   ordersList.html(htmlForOrderDetails);
+// };
 Pizza.prototype.pizzaCartDisplay = function() {
-  $("#pizza-cart").append("<li>$" + this.price + "—" + this.size + " inch pizza with: cheese " + this.toppings.join(' ') + "</li>");
+  $("#order-details").html("<li id=" + pizzaTotal.pizzaId + ">$"+this.price+"—"+this.size+" inch pizza with: cheese "+this.toppings.join(' ')+"</li>");
   $('#cost').text("$" + pizzaTotal.orderTotal());
 };
 
-function displayPizzaOrder(ordersToDisplay) {
-  var ordersList = $("ul#order-details");
-  var htmlForOrderDetails = "";
-  ordersToDisplay.pizzaOrder.forEach(function(pizza) {
-    htmlForOrderDetails += "<li id=" + pizza.id + ">$" + this.price + "— Pizza" + "</li>";
-  });
-  ordersList.html(htmlForOrderDetails);
-};
 
-
-function checkout(pizzaId) {
+PizzaTotal.prototype.checkout = function(pizzaId) {
   var pizza = pizzaTotal.findPizza(pizzaId);
-  $('#show-pizza').show();
-  $("#pizza-details").html(pizza.size + "\" cheese pizza with " + pizza.toppings);
   var buttons = $("#buttons");
   buttons.empty();
-  buttons.append("<button class='deleteButton' id=" + contact.id + ">Delete</button>");
+  buttons.append("<button class='deleteButton' id=" + this.id + ">Delete</button>");
 }
-
-function attachOrderListeners() {
-  $("ul#orderDetails").on("click", "li", function() {
-    checkout(this.id);
+PizzaTotal.prototype.attachOrderListeners = function() {
+  $("ul#order-details").on("click", "li", function() {
+    pizzaTotal.checkout(this.pizzaId);
   });
   $("#buttons").on("click", ".deleteButton", function() {
-    pizzaTotal.deletePizza(this.id);
+    pizzaTotal.deletePizza(this.pizzaId);
     $("#show-pizza").hide();
-    displayPizzaOrder(pizzaTotal);
+    pizza.pizzaCartDisplay(pizzaTotal);
   });
 };
+
 
 let pizzaTotal = new PizzaTotal();
 $(document).ready(function() {
-  attachOrderListeners();
+
   $('form#build').submit(function(event) {
     event.preventDefault();
     let toppings = [];
@@ -116,8 +115,8 @@ $(document).ready(function() {
     let pizza = new Pizza(size, toppings);
     let price = pizza.priceCalculator();
     pizzaTotal.addPizza(size, toppings, price);
-    pizza.pizzaCartDisplay();
-    displayPizzaOrder(pizzaTotal);
+    pizzaTotal.attachOrderListeners(pizza);
+    pizza.pizzaCartDisplay(pizzaTotal);
   });
   //
   $('form#submit-order').submit(function(event) {
