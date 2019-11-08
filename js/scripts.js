@@ -1,27 +1,56 @@
 //Backend
 
-Customer = function(name, address, phone) {
-  this.name = name,
-  this.address = address,
-  this.phone = phone
+PizzaTotal = function() {
+  this.pizzaOrder = [],
+  this.pizzaId = 0
 };
 
+PizzaTotal.prototype.addPizza = function(pizza) {
+  pizza.id = this.assignId(),
+  this.pizzaOrder.push(pizza)
+}
 
+PizzaTotal.prototype.assignId = function() {
+  this.pizzaId += 1;
+  return this.pizzaId;
+}
+
+PizzaTotal.prototype.findPizza = function(id) {
+  for (let i=0; i< this.pizzaOrder.length; i++) {
+    if (this.pizzaOrder[i]) {
+      if (this.pizzaOrder[i].id == id) {
+        return this.pizzaOrder[i];
+      }
+    }
+  };
+  return false;
+}
+
+PizzaTotal.prototype.deletePizza = function(id) {
+  for (let i=0; i< this.pizzaOrder.length; i++) {
+    if (this.pizzaOrder[i]) {
+      if (this.pizzaOrder[i].id == id) {
+        delete this.pizzaOrder[i];
+        return true;
+      }
+    }
+  };
+  return false;
+}
 
 Pizza = function(size, toppings) {
   this.size = size,
   this.toppings = toppings
-  this.pizzaOrder = []
+
 };
 
 Pizza.prototype.priceCalculator = function() {
   toppingTotal = this.toppings.length;
-  var pizzaTotal = this.size + toppingTotal;
-  this.pizzaOrder.push(pizzaTotal)
+  let pizzaTotal = this.size + toppingTotal;
   return pizzaTotal
 };
 
-Pizza.prototype.orderTotal = function() {
+PizzaTotal.prototype.orderTotal = function() {
   let orderTotal = 0
   for(i=0;i<this.pizzaOrder.length;i++) {
     orderTotal += this.pizzaOrder[i]
@@ -30,33 +59,44 @@ Pizza.prototype.orderTotal = function() {
 };
 //UI
 
+let pizzaTotal = new PizzaTotal();
 $(document).ready(function() {
-
-  $('form').submit(function(event) {
+  $('form#build').submit(function(event) {
+    console.log('hi');
     event.preventDefault();
-    $(".order").show();
-    // $(".build").hide();
-    var userName = $('#name').val();
-    var userAddress = $('#address').val();
-    var userPhone = $('#phone').val();
-    var customer = new Customer(userName, userAddress, userPhone)
-
-    var toppings = [];
-            $.each($("input[name='toppings']:checked"), function(){
-                toppings.push($(this).val());
-            });
-    var size = parseInt($('#size').val());
-$('#size').val('');
-$('#toppings').val('');
-
-
-    var pizza = new Pizza(size, toppings);
-    var price = pizza.priceCalculator();
-    var customer = new Customer(userName, userAddress, userPhone)
-
-
-    $('#cost').text("$" + pizza.orderTotal());
-
+    let toppings = [];
+    $.each($("input[name='toppings']:checked"), function(){
+      toppings.push($(this).val());
+    });
+    let size = parseInt($('#size').val());
+    $('#size').val('');
+    $('#toppings').val('');
+    let pizza = new Pizza(size, toppings);
+    let price = pizza.priceCalculator();
+    let newPizza = [pizza, price];
+    pizzaTotal.addPizza(newPizza);
+    // pizzaOrder.push(pizza.size, pizza.toppings, price)
+    $('#cost').text("$" + pizzaTotal.orderTotal());
+  console.log(newPizza);
   });
+// 
+//   $('form#submit-order').submit(function(event) {
+//     event.preventDefault();
+//     // $(".order").show();
+// $('#cost').text("$" + pizzaTotal.orderTotal());
+//     // let userName = $('#name').val();
+//     // let userAddress = $('#address').val();
+//     // let userPhone = $('#phone').val();
+//     // // let pizzaOrder = [pizza.size, pizza.toppings, price]
+//     // let customer = new Customer(userName, userAddress, userPhone)
+// $('#cost').text("$" + customer.orderTotal());
+//
+//
+//   });
+
+  //
+  // $('#cost').text("$" + pizza.orderTotal());
+
+
 
 });
