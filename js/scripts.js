@@ -23,11 +23,11 @@ $(document).ready(function() {
             $.each($("input[name='toppings']:checked"), function(){
                 toppings.push($(this).val());
             });
-    var size = $('#size').val();
+    var size = parseInt($('#size').val());
 
     var pizza = new Pizza(size, toppings);
 console.log(pizza);
-    $('#cost').text(pizza.priceCalculator());
+    $('#cost').text("$" + pizza.priceCalculator());
 
   });
 

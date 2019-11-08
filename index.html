@@ -10,7 +10,7 @@
     <title>Pizza Shop</title>
   </head>
   <body>
-<form>
+<form class="build">
     <div class="form-group">
     <label>Name</label>
     <input type="text" class="form-control" id="name" placeholder="enter name">
@@ -23,7 +23,10 @@
       <option value=15>Large $15</option>
     </select>
   </div>
+  <h2>Toppings!</h2>
+  <h4>$1 Each</h4>
   <div class="form-check form-check-inline">
+
     <input class="form-check-input" name="toppings" type="checkbox" id="topping1" value="mushroom">
     <label class="form-check-label" for="inlineCheckbox1">Mushroom</label>
   </div>
@@ -35,23 +38,11 @@
     <input class="form-check-input" name="toppings" type="checkbox" id="inlineCheckbox3" value="pepperoni">
     <label class="form-check-label" for="inlineCheckbox3">pepperoni</label>
   </div>
-
-  <!-- <div class="form-group">
-    <label>Toppings</label>
-
-    <select multiple class="form-control" id="toppings">
-      <option value="mushroom">Mushroom</option>
-      <option value="olives">Olives</option>
-      <option value="pepperoni">Pepperoni</option>
-      <option value="jalapeno">jalapeno</option>
-      <option value="sadness">Sadness</option>
-    </select>
-  </div> -->
   <button type="submit">Submit Order</button>
 </form>
 
 <div class="order">
-  <h2 class='cost'></h2>
+  <h2 id='cost'></h2>
 </div>
 
   </body>
