@@ -10,7 +10,7 @@ PizzaTotal = function() {
   this.pizzaId = 0
 };
 
-PizzaTotal.prototype.addPizza = function(size, topppings, price) {
+PizzaTotal.prototype.addPizza = function(pizza, size, toppings, price) {
   pizza.id = this.assignId(),
   this.pizzaOrder.push(size, toppings, price);
 }
@@ -62,7 +62,7 @@ Pizza = function(size, toppings) {
 Pizza.prototype.priceCalculator = function() {
   toppingTotal = this.toppings.length;
   this.price = this.size + toppingTotal;
-  pizzaPricce.push(this.price);
+  pizzaTotal.pizzaPrice.push(this.price);
 };
 //UI
 
@@ -71,19 +71,39 @@ Pizza.prototype.pizzaCartDisplay = function() {
   $('#cost').text("$" + pizzaTotal.orderTotal());
 };
 
+function displayPizzaOrder(ordersToDisplay) {
+  var ordersList = $("ul#order-details");
+  var htmlForOrderDetails = "";
+  ordersToDisplay.pizzaOrder.forEach(function(pizza) {
+    htmlForOrderDetails += "<li id=" + pizza.id + ">$" + this.price + "— Pizza" + "</li>";
+  });
+  ordersList.html(htmlForOrderDetails);
+};
+
+
 function checkout(pizzaId) {
   var pizza = pizzaTotal.findPizza(pizzaId);
-
-  $("#order-details").html(pizzaTotal.pizzaOrder[0] + "—" + pizzaTotal.pizzaOrder[1] + "\" pizza with Cheese" + pizzaTotal.pizzaOrder[2]);
-  $(".last-name").html(contact.toppings);
-  $(".phone-number").html(contact.phoneNumber);
+  $('#show-pizza').show();
+  $("#pizza-details").html(pizza.size + "\" cheese pizza with " + pizza.toppings);
   var buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" + contact.id + ">Delete</button>");
 }
 
+function attachOrderListeners() {
+  $("ul#orderDetails").on("click", "li", function() {
+    checkout(this.id);
+  });
+  $("#buttons").on("click", ".deleteButton", function() {
+    pizzaTotal.deletePizza(this.id);
+    $("#show-pizza").hide();
+    displayPizzaOrder(pizzaTotal);
+  });
+};
+
 let pizzaTotal = new PizzaTotal();
 $(document).ready(function() {
+  attachOrderListeners();
   $('form#build').submit(function(event) {
     event.preventDefault();
     let toppings = [];
@@ -97,6 +117,7 @@ $(document).ready(function() {
     let price = pizza.priceCalculator();
     pizzaTotal.addPizza(size, toppings, price);
     pizza.pizzaCartDisplay();
+    displayPizzaOrder(pizzaTotal);
   });
   //
   $('form#submit-order').submit(function(event) {
@@ -106,7 +127,7 @@ $(document).ready(function() {
     let userName = $('#name').val();
     let userAddress = $('#address').val();
     let userPhone = $('#phone').val();
-    let customer = new Customer(userName, userAddress, userPhone)
-
+    let customer = new Customer(userName, userAddress, userPhone);
+    displayPizzaOrder(pizza);
   });
 });
