@@ -10,10 +10,9 @@ PizzaTotal = function() {
   this.pizzaId = 0
 };
 
-PizzaTotal.prototype.addPizza = function(pizza, price) {
+PizzaTotal.prototype.addPizza = function(size, topppings, price) {
   pizza.id = this.assignId(),
-  this.pizzaOrder.push(pizza);
-  this.pizzaPrice.push(price);
+  this.pizzaOrder.push(size, toppings, price);
 }
 
 PizzaTotal.prototype.assignId = function() {
@@ -56,20 +55,32 @@ PizzaTotal.prototype.orderTotal = function() {
 Pizza = function(size, toppings) {
   this.size = size,
   this.toppings = toppings
+  this.price = 0;
 
 };
 
 Pizza.prototype.priceCalculator = function() {
   toppingTotal = this.toppings.length;
-  let pizzaTotal = this.size + toppingTotal;
-  return pizzaTotal
+  this.price = this.size + toppingTotal;
+  pizzaPricce.push(this.price);
 };
 //UI
 
 Pizza.prototype.pizzaCartDisplay = function() {
-  $("#pizza-cart").append("<li>$" + this.priceCalculator() + "—" + this.size + " inch pizza with: cheese " + this.toppings.join(' ') + "</li>");
+  $("#pizza-cart").append("<li>$" + this.price + "—" + this.size + " inch pizza with: cheese " + this.toppings.join(' ') + "</li>");
   $('#cost').text("$" + pizzaTotal.orderTotal());
 };
+
+function checkout(pizzaId) {
+  var pizza = pizzaTotal.findPizza(pizzaId);
+
+  $("#order-details").html(pizzaTotal.pizzaOrder[0] + "—" + pizzaTotal.pizzaOrder[1] + "\" pizza with Cheese" + pizzaTotal.pizzaOrder[2]);
+  $(".last-name").html(contact.toppings);
+  $(".phone-number").html(contact.phoneNumber);
+  var buttons = $("#buttons");
+  buttons.empty();
+  buttons.append("<button class='deleteButton' id=" + contact.id + ">Delete</button>");
+}
 
 let pizzaTotal = new PizzaTotal();
 $(document).ready(function() {
@@ -84,8 +95,7 @@ $(document).ready(function() {
     $('#toppings').val('');
     let pizza = new Pizza(size, toppings);
     let price = pizza.priceCalculator();
-    let newPizza = [pizza, price];
-    pizzaTotal.addPizza(newPizza, price);
+    pizzaTotal.addPizza(size, toppings, price);
     pizza.pizzaCartDisplay();
   });
   //
