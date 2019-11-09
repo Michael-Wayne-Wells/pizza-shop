@@ -10,26 +10,26 @@
   <title>Pizza Shop</title>
 </head>
 <body>
-<div class="container">
-<div class="header">
-  <h1>
-    <span class="text1">C</span>
-    <span class="text1">a</span>
-    <span class="text2">r</span>
-    <span class="text3">n</span>
-    <span class="text1">a</span>
-    <span class="text3">p</span>
-    <span class="text2">'</span>
-    <span class="text1">s</span>
-  </h1>
-  <h1>
-    <span class="text3">P</span>
-    <span class="text2">i</span>
-    <span class="text3">z</span>
-    <span class="text1">z</span>
-    <span class="text2">a</span>
-  </h1>
-</div>
+  <div class="container">
+    <div class="header">
+      <h1>
+        <span class="text1">C</span>
+        <span class="text1">a</span>
+        <span class="text2">r</span>
+        <span class="text3">n</span>
+        <span class="text1">a</span>
+        <span class="text3">p</span>
+        <span class="text2">'</span>
+        <span class="text1">s</span>
+      </h1>
+      <h1>
+        <span class="text3">P</span>
+        <span class="text2">i</span>
+        <span class="text3">z</span>
+        <span class="text1">z</span>
+        <span class="text2">a</span>
+      </h1>
+    </div>
 
 
     <div class="container order-confirmation">
@@ -42,78 +42,78 @@
         <p id="address"></p>
         <p id="phone"></p>
       </div>
-      </div>
+    </div>
 
-      <form id="submit-order">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" class="form-control" id="name-input" placeholder="enter name">
-          <label>Address</label>
-          <input type="text" class="form-control" id="address-input" placeholder="enter address">
-          <label>Phone Number</label>
-          <input type="number" class="form-control" id="phone-input" placeholder="enter phone number">
-        </div>
-        <button class="btn btn-dark" type="submit">Submit Order</button>
-      </form>
+    <form id="submit-order">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" id="name-input" placeholder="enter name">
+        <label>Address</label>
+        <input type="text" class="form-control" id="address-input" placeholder="enter address">
+        <label>Phone Number</label>
+        <input type="number" class="form-control" id="phone-input" placeholder="enter phone number">
+      </div>
+      <button class="btn btn-dark" type="submit">Submit Order</button>
+    </form>
 
 
     <div id="customer-order-input">
-    <form id="build">
-      <div class="form-group">
-        <label>Size</label>
-        <select class="form-control" id="size">
-          <option value=10>Small $10</option>
-          <option value=13>Medium $13</option>
-          <option value=15>Large $15</option>
-        </select>
-      </div>
-      <h2>Toppings!</h2>
-      <h5>$1 Each</h5>
-      <div class="form-check form-check-inline">
+      <form id="build">
+        <div class="form-group">
+          <label>Size</label>
+          <select class="form-control" id="size">
+            <option value=10>Small $10</option>
+            <option value=13>Medium $13</option>
+            <option value=15>Large $15</option>
+          </select>
+        </div>
+        <h2>Toppings!</h2>
+        <h5>$1 Each</h5>
+        <div class="form-check form-check-inline">
 
-        <input class="form-check-input" name="toppings" type="checkbox" id="topping1" value="mushroom">
-        <label class="form-check-label" for="inlineCheckbox1">Mushroom</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" name="toppings" type="checkbox" id="topping2" value="olives">
-        <label class="form-check-label" for="inlineCheckbox2">Olives</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" name="toppings" type="checkbox" id="inlineCheckbox3" value="pepperoni">
-        <label class="form-check-label" for="inlineCheckbox3">pepperoni</label>
-      </div>
-      <button class="btn btn-dark" type="submit">Add Pizza</button>
+          <input class="form-check-input" name="toppings" type="checkbox" id="topping1" value="mushroom">
+          <label class="form-check-label" for="inlineCheckbox1">Mushroom</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="toppings" type="checkbox" id="topping2" value="olives">
+          <label class="form-check-label" for="inlineCheckbox2">Olives</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" name="toppings" type="checkbox" id="inlineCheckbox3" value="pepperoni">
+          <label class="form-check-label" for="inlineCheckbox3">pepperoni</label>
+        </div>
+        <button class="btn btn-dark" type="submit">Add Pizza</button>
 
-    </form>
-  </div>
-  <div class="container show-order">
-    <div class="cart row">
-      <div class="total col-3">
-        <h1>Total:</h1>
-      </div>
-        <div class="total col-3">
-<h1 id='cost'></h1>
-</div>
-      <div class="col-6">
-        <div class="order">
-          <h2 class="pre-submit">Pizza Cart:</h2>
-          <h2 class="order-confirmation">Your Order:</h2>
-          <ul id="order-details"></ul>
+      </form>
+    </div>
+    <div class="container show-order">
+      <div class="cart row">
+        <div class="total col-2">
+          <h1>TOTAL</h1>
+        </div>
+        <div class="total-cost col-3">
+          <h1 id='cost'></h1>
+        </div>
+        <div class="col-6">
+          <div class="order">
+            <h2 class="pre-submit">Pizza Cart:</h2>
+            <h2 class="order-confirmation">Your Order:</h2>
+            <ul id="order-details"></ul>
 
 
+
+
+          </div>
 
 
         </div>
 
-
       </div>
-
+      <button class="pre-submit btn btn-dark" id="checkout" type="button">Checkout</button>
     </div>
-    <button class="pre-submit btn btn-dark" id="checkout" type="button">Checkout</button>
+
+
   </div>
-
-
-</div>
 
 
 

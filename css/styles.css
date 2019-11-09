@@ -1,3 +1,14 @@
+
+@font-face {
+  font-family: MyHelvetica;
+  src: local("Helvetica Neue Bold"),
+  local("HelveticaNeue-Bold"),
+  url(MgOpenModernaBold.ttf);
+  font-weight: bold;
+}
+body {
+  font-family: MyHelvetica;
+}
 .order-confirmation, .show-order {
   display: none;
 }
@@ -47,13 +58,14 @@
 
 .header h1 {
   animation: bounceIn 2s;
-  font-size: 100px;
-animation-name: bounceInDown;
+  font-size: 60px;
+  word-wrap: none;
+  animation-name: bounceInDown;
 }
 
 
 .header {
-
+  margin-top: 20px;
   color: white;
   background-color: black;
   text-shadow: 5px 5px #ff0000;
@@ -61,11 +73,11 @@ animation-name: bounceInDown;
   text-transform: uppercase;
 }
 .text1:hover  {
- text-shadow: 10px -50px #ff0000;
+  text-shadow: 10px -50px #ff0000;
 
 }
 .text2:hover  {
- text-shadow: -50px 30px #ff0000;
+  text-shadow: -50px 30px #ff0000;
 
 }
 .text3:hover  {
@@ -84,15 +96,36 @@ animation-name: bounceInDown;
   text-align: right;
   padding-right: 30px;
   border: 5px solid black;
-width: 100%;
-margin: none;
+  width: 100%;
+  margin: none;
+}
+.total-cost h1 {
+  color: black;
+  background-color: white;
+  font-size: 50px;
+  font-family: impact;
+  text-align: center;
 }
 
-.total {
-  border: 5px solid black;
-margin: none;
-  width:100%;
+div.total-cost {
+  padding: 4px;
+  background-color: black
+
 }
+.total h1 {
+  font-size: 35px;
+  font-family: impact;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+
+}
+div.total {
+
+  background-color: white;
+  margin: none;
+  padding-left: none;
+}
+
 .cart {
   margin: 10px;
   width: 100%;
@@ -101,8 +134,12 @@ margin: none;
 li {
   list-style: none;
 }
- #customer-order-input {
-   background-color: black;
-   color: white;
-   padding: 15px;
- }
+#customer-order-input {
+  background-color: black;
+  color: white;
+  padding: 15px;
+}
+
+#checkout {
+  width: 100%;
+}
