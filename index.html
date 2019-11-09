@@ -10,9 +10,29 @@
   <title>Pizza Shop</title>
 </head>
 <body>
+<div class="container">
+<div class="header">
+  <h1>
+    <span class="text1">C</span>
+    <span class="text1">a</span>
+    <span class="text2">r</span>
+    <span class="text3">n</span>
+    <span class="text1">a</span>
+    <span class="text3">p</span>
+    <span class="text2">'</span>
+    <span class="text1">s</span>
+  </h1>
+  <h1>
+    <span class="text3">P</span>
+    <span class="text2">i</span>
+    <span class="text3">z</span>
+    <span class="text1">z</span>
+    <span class="text2">a</span>
+  </h1>
+</div>
 
 
-    <div class="order-confirmation">
+    <div class="container order-confirmation">
       <div class="card-header">
         <h2>Thank you for your order <span id="checkout-name"></span>!</h2>
       </div>
@@ -33,7 +53,7 @@
           <label>Phone Number</label>
           <input type="number" class="form-control" id="phone-input" placeholder="enter phone number">
         </div>
-        <button type="submit">Submit Order</button>
+        <button class="btn btn-dark" type="submit">Submit Order</button>
       </form>
 
 
@@ -48,7 +68,7 @@
         </select>
       </div>
       <h2>Toppings!</h2>
-      <h4>$1 Each</h4>
+      <h5>$1 Each</h5>
       <div class="form-check form-check-inline">
 
         <input class="form-check-input" name="toppings" type="checkbox" id="topping1" value="mushroom">
@@ -62,21 +82,26 @@
         <input class="form-check-input" name="toppings" type="checkbox" id="inlineCheckbox3" value="pepperoni">
         <label class="form-check-label" for="inlineCheckbox3">pepperoni</label>
       </div>
-      <button type="submit">Submit pizza</button>
-      <buttin id="checkout" type="button">Checkout</button>
+      <button class="btn btn-dark" type="submit">Add Pizza</button>
+
     </form>
   </div>
-  <div class="container">
-    <div class="row">
-
-      <div class="col">
+  <div class="container show-order">
+    <div class="cart row">
+      <div class="total col-3">
+        <h1>Total:</h1>
+      </div>
+        <div class="total col-3">
+<h1 id='cost'></h1>
+</div>
+      <div class="col-6">
         <div class="order">
-          <h1 class="pre-submit">Pizza Cart:</h1>
-          <h1 class="order-confirmation">Your Order:</h1>
+          <h2 class="pre-submit">Pizza Cart:</h2>
+          <h2 class="order-confirmation">Your Order:</h2>
           <ul id="order-details"></ul>
 
-          <h1>Total:</h1>
-          <h2 id='cost'></h2>
+
+
 
         </div>
 
@@ -84,10 +109,11 @@
       </div>
 
     </div>
+    <button class="pre-submit btn btn-dark" id="checkout" type="button">Checkout</button>
   </div>
 
 
-
+</div>
 
 
 

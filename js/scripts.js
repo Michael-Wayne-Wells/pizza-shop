@@ -37,8 +37,11 @@ Pizza.prototype.priceCalculator = function() {
 
 
 //UI
-Customer.prototype.submitOrder = function() {
-  var orderDetails = $('#order-details')
+Customer.prototype.submitOrder = function(customer) {
+  var orderDetails = $('#delivery-details')
+  $('#submit-order').hide();
+  $('.pre-submit').hide();
+  $('.order-confirmation').show();
   Object.keys(customer).forEach(function(key) {
     orderDetails.append('<li>' + customer[key] + '</li>')
   })
@@ -47,6 +50,7 @@ Customer.prototype.submitOrder = function() {
 PizzaTotal.prototype.pizzaCartDisplay = function(pizza, pizzaTotal) {
   $("#order-details").append("<li id=" + pizzaTotal.pizzaId + ">$"+pizza.price+"—"+pizza.size+" inch pizza with: cheese "+pizza.toppings.join(' ')+"</li>");
   $('#cost').text("$" + pizzaTotal.orderTotal());
+  $('.show-order').show();
 };
 
 let pizzaTotal = new PizzaTotal();
@@ -75,14 +79,12 @@ $(document).ready(function() {
 
   $('form#submit-order').submit(function(event) {
     event.preventDefault();
-    $('#submit-order').hide();
-    $('.pre-submit').hide();
-    $('.order-confirmation').show();
+
     let userName = $('#name-input').val();
     let userAddress = $('#address-input').val();
     let userPhone = $('#phone-input').val();
     let customer = new Customer(userName, userAddress, userPhone);
-    customer.submitOrder();
+    customer.submitOrder(customer);
 
     // $('#total-cost').text("$" + pizzaTotal.orderTotal());
     // $('#customers-order').append(pizzaTotal.pizzaCartDisplay(pizza, pizzaTotal))
