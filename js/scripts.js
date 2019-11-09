@@ -20,28 +20,6 @@ PizzaTotal.prototype.assignId = function() {
   return this.pizzaId;
 }
 
-PizzaTotal.prototype.findPizza = function(id) {
-  for (let i=0; i< this.pizzaOrder.length; i++) {
-    if (this.pizzaOrder[i]) {
-      if (this.pizzaOrder[i].id == id) {
-        return this.pizzaOrder[i];
-      }
-    }
-  };
-  return false;
-}
-
-PizzaTotal.prototype.deletePizza = function(id) {
-  for (let i=0; i< this.pizzaOrder.length; i++) {
-    if (this.pizzaOrder[i]) {
-      if (this.pizzaOrder[i].id == id) {
-        delete this.pizzaOrder[i];
-        return true;
-      }
-    }
-  };
-  return false;
-}
 
 PizzaTotal.prototype.orderTotal = function() {
   let orderTotal = 0
@@ -67,37 +45,11 @@ Pizza.prototype.priceCalculator = function() {
 //UI
 
 
-
-// function displayPizzaOrder(ordersToDisplay) {
-//   var ordersList = $("ul#order-details");
-//   var htmlForOrderDetails = "";
-//   ordersToDisplay.pizzaOrder.forEach(function(pizza) {
-//     htmlForOrderDetails += "<li id=" + pizza.id + ">$" + this.price + "— Pizza" + "</li>";
-//   });
-//   ordersList.html(htmlForOrderDetails);
-// };
-Pizza.prototype.pizzaCartDisplay = function() {
-  $("#order-details").html("<li id=" + pizzaTotal.pizzaId + ">$"+this.price+"—"+this.size+" inch pizza with: cheese "+this.toppings.join(' ')+"</li>");
+PizzaTotal.prototype.pizzaCartDisplay = function(pizza, pizzaTotal) {
+  $("#order-details").append("<li id=" + pizzaTotal.pizzaId + ">$"+pizza.price+"—"+pizza.size+" inch pizza with: cheese "+pizza.toppings.join(' ')+"</li>");
   $('#cost').text("$" + pizzaTotal.orderTotal());
 };
 
-
-PizzaTotal.prototype.checkout = function(pizzaId) {
-  var pizza = pizzaTotal.findPizza(pizzaId);
-  var buttons = $("#buttons");
-  buttons.empty();
-  buttons.append("<button class='deleteButton' id=" + this.id + ">Delete</button>");
-}
-PizzaTotal.prototype.attachOrderListeners = function() {
-  $("ul#order-details").on("click", "li", function() {
-    pizzaTotal.checkout(this.pizzaId);
-  });
-  $("#buttons").on("click", ".deleteButton", function() {
-    pizzaTotal.deletePizza(this.pizzaId);
-    $("#show-pizza").hide();
-    pizza.pizzaCartDisplay(pizzaTotal);
-  });
-};
 
 
 let pizzaTotal = new PizzaTotal();
@@ -110,17 +62,17 @@ $(document).ready(function() {
       toppings.push($(this).val());
     });
     let size = parseInt($('#size').val());
-    $('#size').val('');
-    $('#toppings').val('');
+    $('#size').val('13');
+    $('input[type="checkbox"]').prop('checked', false);;
     let pizza = new Pizza(size, toppings);
     let price = pizza.priceCalculator();
     pizzaTotal.addPizza(size, toppings, price);
-    pizzaTotal.attachOrderListeners(pizza);
-    pizza.pizzaCartDisplay(pizzaTotal);
+  pizzaTotal.pizzaCartDisplay(pizza, pizzaTotal);
   });
   //
   $('form#submit-order').submit(function(event) {
     event.preventDefault();
+
 
     $('#cost').text("$" + pizzaTotal.orderTotal());
     let userName = $('#name').val();
