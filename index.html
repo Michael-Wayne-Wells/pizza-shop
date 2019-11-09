@@ -10,6 +10,9 @@
   <title>Pizza Shop</title>
 </head>
 <body>
+  <div id="customer-order-input">
+
+
   <form id="build">
     <div class="form-group">
       <label>Size</label>
@@ -36,16 +39,18 @@
     </div>
     <button type="submit">Submit pizza</button>
   </form>
-
+  </div>
 
   <div class="order">
-    <h1>Pizza Cart:</h1>
+    <h1 class="pre-submit">Pizza Cart:</h1>
+      <h1 class="submitted">Your Order:</h1>
     <ul id="order-details"></ul>
-    
-    <h1>Subtotal:</h1>
+
+    <h1>Total:</h1>
     <h2 id='cost'></h2>
 
   </div>
+
   <form id="submit-order">
     <div class="form-group">
       <label>Name</label>
@@ -68,7 +73,10 @@
   <div class="row">
       <div class="col">
         <h3>Your Order:</h3>
-        <ul id="order-details">
+        <h3>Your order:</h3>
+        <h3>Total Cost:</h3>
+        <h2 id="total-cost"></h2>
+        <ul id="customers-order">
 
         </ul>
 
@@ -82,7 +90,6 @@
     </div>
     </div>
 
-    <h3>Your order:</h3>
 
   </div>
 </body>

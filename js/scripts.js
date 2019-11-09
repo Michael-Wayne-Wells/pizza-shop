@@ -57,6 +57,8 @@ $(document).ready(function() {
 
   $('form#build').submit(function(event) {
     event.preventDefault();
+    $('#customer-order-input').hide();
+    
     let toppings = [];
     $.each($("input[name='toppings']:checked"), function(){
       toppings.push($(this).val());
@@ -74,11 +76,12 @@ $(document).ready(function() {
     event.preventDefault();
 
 
-    $('#cost').text("$" + pizzaTotal.orderTotal());
+
     let userName = $('#name').val();
     let userAddress = $('#address').val();
     let userPhone = $('#phone').val();
     let customer = new Customer(userName, userAddress, userPhone);
-    displayPizzaOrder(pizza);
+    $('#total-cost').text("$" + pizzaTotal.orderTotal());
+    $('#customers-order').append(pizzaTotal.pizzaCartDisplay(pizza, pizzaTotal))
   });
 });
