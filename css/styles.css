@@ -1,2 +1,7 @@
-#result {
+.order-confirmation {
   display: none;
+}
+
+#submit-order {
+  display: none;
+}
